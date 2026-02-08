@@ -1,17 +1,483 @@
 ---
+import  Layout from "../layouts/main.astro"
+import { Button } from "../components/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/card";
+import { Badge } from "../components/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/accordion";
+import { Wifi, Zap, Clock, Headphones, MapPin, Check, Phone, Mail, Facebook, Instagram, ArrowRight, Star, Shield, Users } from "lucide-react";
 
+const plans = [
+  {
+    name: "Básico",
+    speed: "50",
+    price: "39.900",
+    features: ["Velocidad simétrica", "Router WiFi incluido", "Instalación gratis", "Soporte 24/7"],
+    popular: false,
+  },
+  {
+    name: "Hogar",
+    speed: "100",
+    price: "49.900",
+    features: ["Velocidad simétrica", "Router WiFi 5 incluido", "Instalación gratis", "Soporte prioritario", "1 mes gratis"],
+    popular: true,
+  },
+  {
+    name: "Premium",
+    speed: "300",
+    price: "69.900",
+    features: ["Velocidad simétrica", "Router WiFi 6 incluido", "Instalación gratis", "Soporte VIP", "1 mes gratis", "IP fija opcional"],
+    popular: false,
+  },
+  {
+    name: "Ultra",
+    speed: "600",
+    price: "99.900",
+    features: ["Velocidad simétrica", "Router WiFi 6E incluido", "Instalación express", "Soporte VIP 24/7", "2 meses gratis", "IP fija incluida"],
+    popular: false,
+  },
+];
+
+const coverage = [
+  { region: "Valle del Cauca", cities: ["El Cerrito", "Ginebra", "Guacarí", "Pradera", "Riofrío", "Rozo", "San Pedro", "Palmira", "Jamundí", "Tuluá", "Buga", "Yumbo"] },
+  { region: "Tolima", cities: ["Carmen de Apicalá", "Chaparral", "Melgar", "Ibagué"] },
+];
+
+const testimonials = [
+  {
+    name: "María García",
+    location: "Palmira, Valle",
+    text: "Mi negocio y mi hogar están conectados con Celsia Internet. Tengo el servicio desde hace dos años. Me parece muy bueno, muy buena velocidad.",
+    rating: 5,
+  },
+  {
+    name: "Carlos Rodríguez",
+    location: "Melgar, Tolima",
+    text: "Excelente servicio, nunca se cae y la velocidad es constante. El soporte técnico responde muy rápido cuando lo necesito.",
+    rating: 5,
+  },
+  {
+    name: "Ana Martínez",
+    location: "Yumbo, Valle",
+    text: "Por fin tenemos fibra óptica de verdad. Las videollamadas ya no se cortan y puedo trabajar desde casa sin problemas.",
+    rating: 5,
+  },
+];
+
+const faqs = [
+  {
+    question: "¿Qué es la fibra óptica simétrica?",
+    answer: "La fibra óptica simétrica significa que tienes la misma velocidad de subida y de bajada. Esto es ideal para videollamadas, streaming en vivo, gaming online y trabajo remoto.",
+  },
+  {
+    question: "¿Cuánto tiempo toma la instalación?",
+    answer: "La instalación normalmente se realiza en 3-5 días hábiles después de la solicitud. El proceso de instalación en tu hogar toma aproximadamente 2 horas.",
+  },
+  {
+    question: "¿Qué incluye el servicio?",
+    answer: "Todos nuestros planes incluyen router WiFi, instalación gratuita, soporte técnico y sin cláusula de permanencia. Además, ofrecemos tu primer mes gratis en planes seleccionados.",
+  },
+  {
+    question: "¿Hay cláusula de permanencia?",
+    answer: "No, en Celsia Internet no manejamos cláusulas de permanencia. Puedes cancelar tu servicio cuando lo desees sin penalidades.",
+  },
+  {
+    question: "¿Cómo puedo pagar mi factura?",
+    answer: "Puedes pagar a través de nuestra plataforma online, en puntos de pago autorizados, o mediante débito automático. También aceptamos pagos con PSE y tarjetas de crédito.",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+    <div class="min-h-screen bg-white">
+      {/* Header */}
+      <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+              <Wifi className="w-6 h-6 text-white" client:load />
+            </div>
+            <span class="text-2xl font-bold">
+              <span class="text-gray-900">Celsia</span>
+              <span class="text-orange-500"> internet</span>
+            </span>
+          </div>
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="#planes" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Planes</a>
+            <a href="#cobertura" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Cobertura</a>
+            <a href="#beneficios" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Beneficios</a>
+            <a href="#faq" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Preguntas</a>
+          </nav>
+          <div class="flex items-center gap-3">
+            <Button variant="ghost" className="hidden sm:flex text-gray-700 hover:text-orange-500" client:load>
+              <Phone className="w-4 h-4 mr-2" client:load />
+              Contáctanos
+            </Button>
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white" client:load>
+              Contratar ahora
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section class="relative overflow-hidden bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 py-20 lg:py-32">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30" />
+        <div class="container mx-auto px-4 relative">
+          <div class="max-w-4xl mx-auto text-center">
+            <Badge className="bg-white/20 text-white border-white/30 mb-6 text-sm px-4 py-1.5" client:load>
+              Primer mes GRATIS en planes seleccionados
+            </Badge>
+            <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              El internet
+              <br />
+              <span class="text-orange-100">que quieres</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-orange-100 mb-8 max-w-2xl mx-auto">
+              Fibra óptica 100% real con velocidad simétrica. Rápido, estable y al mejor precio del Valle y Tolima.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-white text-orange-600 hover:bg-orange-50 text-lg px-8 py-6 font-semibold shadow-lg" client:load>
+                Ver planes disponibles
+                <ArrowRight className="ml-2 w-5 h-5" client:load />
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-6 font-semibold" client:load>
+                Verificar cobertura
+              </Button>
+            </div>
+            <div class="mt-12 grid grid-cols-3 gap-8 max-w-lg mx-auto">
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-white">100K+</div>
+                <div class="text-orange-100 text-sm">Clientes felices</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-white">99.9%</div>
+                <div class="text-orange-100 text-sm">Disponibilidad</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-white">500+</div>
+                <div class="text-orange-100 text-sm">Escuelas conectadas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent" />
+      </section>
+
+      {/* Features Section */}
+      <section id="beneficios" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">¿Por qué elegir Celsia Internet?</h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">La mejor experiencia de internet con fibra óptica real hasta tu hogar</p>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
+              <CardHeader client:load>
+                <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
+                  <Zap className="w-7 h-7 text-white" client:load/>
+                </div>
+                <CardTitle className="text-xl" client:load>Velocidad simétrica</CardTitle>
+              </CardHeader>
+              <CardContent client:load>
+                <p class="text-gray-600">Misma velocidad de subida y bajada para streaming, gaming y videollamadas sin interrupciones.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
+              <CardHeader client:load>
+                <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
+                  <Shield className="w-7 h-7 text-white" client:load />
+                </div>
+                <CardTitle className="text-xl" client:load>Sin permanencia</CardTitle>
+              </CardHeader>
+              <CardContent client:load>
+                <p class="text-gray-600">Sin contratos de permanencia. Cancela cuando quieras sin penalidades ni costos adicionales.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
+              <CardHeader client:load>
+                <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
+                  <Clock className="w-7 h-7 text-white" client:load />
+                </div>
+                <CardTitle className="text-xl" client:load>Instalación rápida</CardTitle>
+              </CardHeader>
+              <CardContent client:load>
+                <p class="text-gray-600">Instalación gratuita en 3-5 días hábiles. Router WiFi incluido sin costo adicional.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
+              <CardHeader client:load>
+                <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
+                  <Headphones className="w-7 h-7 text-white" client:load/>
+                </div>
+                <CardTitle className="text-xl" client:load>Soporte 24/7</CardTitle>
+              </CardHeader>
+              <CardContent client:load>
+                <p class="text-gray-600">Equipo de soporte técnico disponible las 24 horas del día, los 7 días de la semana.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Plans Section */}
+      <section id="planes" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Planes de fibra óptica</h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">Elige el plan perfecto para ti. Todos incluyen instalación gratis y router WiFi.</p>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {plans.map((plan) => (
+              <Card key={plan.name} className={`relative overflow-hidden transition-all duration-300 hover:scale-105 ${plan.popular ? "border-2 border-orange-500 shadow-xl" : "border border-gray-200 shadow-lg"}`}>
+                {plan.popular && (
+                  <div class="absolute top-0 right-0 bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-bl-lg">
+                    MÁS POPULAR
+                  </div>
+                )}
+                <CardHeader className="text-center pb-2" client:load>
+                  <CardTitle className="text-2xl font-bold text-gray-900" client:load>{plan.name}</CardTitle>
+                  <div class="mt-4">
+                    <span class="text-5xl font-bold text-orange-500">{plan.speed}</span>
+                    <span class="text-2xl text-gray-600 ml-1">Mbps</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="text-center" client:load>
+                  <div class="mb-6">
+                    <span class="text-sm text-gray-500">Desde</span>
+                    <div class="flex items-baseline justify-center gap-1">
+                      <span class="text-lg text-gray-600">$</span>
+                      <span class="text-3xl font-bold text-gray-900">{plan.price}</span>
+                      <span class="text-gray-500">/mes</span>
+                    </div>
+                  </div>
+                  <ul class="space-y-3 text-left">
+                    {plan.features.map((feature) => (
+                      <li class="flex items-center gap-2 text-gray-600">
+                        <Check className="w-5 h-5 text-orange-500 flex-shrink-0" client:load />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardFooter client:load>
+                  <Button className={`w-full ${plan.popular ? "bg-orange-500 hover:bg-orange-600" : "bg-gray-900 hover:bg-gray-800"} text-white`} client:load>
+                    Contratar ahora
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Coverage Section */}
+      <section id="cobertura" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nuestra cobertura</h2>
+              <p class="text-gray-600 text-lg mb-8">
+                Ya llegó la fibra óptica que conecta al Valle del Cauca y Tolima. Verifica si tenemos cobertura en tu zona.
+              </p>
+              <div class="space-y-6">
+                {coverage.map((area) => (
+                  <div class="bg-gray-50 rounded-2xl p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                      <MapPin className="w-6 h-6 text-orange-500" client:load />
+                      <h3 class="text-xl font-bold text-gray-900">{area.region}</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      {area.cities.map((city) => (
+                        <Badge variant="secondary" className="bg-white text-gray-700 border border-gray-200 px-3 py-1" client:load>
+                          {city}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Button className="mt-8 bg-orange-500 hover:bg-orange-600 text-white px-8" client:load>
+                <MapPin className="w-4 h-4 mr-2" client:load />
+                Verificar mi dirección
+              </Button>
+            </div>
+            <div class="relative">
+              <div class="bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-4">Estamos creciendo</h3>
+                <p class="text-orange-100 mb-8">Cada día llegamos a más hogares con internet de fibra óptica real. Pronto estaremos en tu municipio.</p>
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="bg-white/10 rounded-xl p-4 text-center">
+                    <div class="text-3xl font-bold">16+</div>
+                    <div class="text-sm text-orange-100">Municipios</div>
+                  </div>
+                  <div class="bg-white/10 rounded-xl p-4 text-center">
+                    <div class="text-3xl font-bold">2</div>
+                    <div class="text-sm text-orange-100">Departamentos</div>
+                  </div>
+                  <div class="bg-white/10 rounded-xl p-4 text-center">
+                    <div class="text-3xl font-bold">5+</div>
+                    <div class="text-sm text-orange-100">Años de experiencia</div>
+                  </div>
+                  <div class="bg-white/10 rounded-xl p-4 text-center">
+                    <div class="text-3xl font-bold">100%</div>
+                    <div class="text-sm text-orange-100">Fibra óptica real</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Lo que dicen nuestros clientes</h2>
+            <p class="text-gray-600 text-lg">Miles de familias ya disfrutan de Celsia Internet</p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial) => (
+              <Card key={testimonial.name} className="border-0 shadow-lg bg-white" client:load>
+                <CardHeader client:load>
+                  <div class="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 fill-orange-400 text-orange-400" client:load />
+                    ))}
+                  </div>
+                  <p class="text-gray-600 italic">"{testimonial.text}"</p>
+                </CardHeader>
+                <CardFooter className="border-t pt-4" client:load>
+                  <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                      <Users className="w-6 h-6 text-orange-500" client:load />
+                    </div>
+                    <div>
+                      <div class="font-semibold text-gray-900">{testimonial.name}</div>
+                      <div class="text-sm text-gray-500">{testimonial.location}</div>
+                    </div>
+                  </div>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Preguntas frecuentes</h2>
+              <p class="text-gray-600 text-lg">Resolvemos tus dudas sobre nuestro servicio</p>
+            </div>
+						<!--
+            <Accordion type="single" collapsible className="space-y-4" client:load>
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="bg-gray-50 rounded-xl px-6 border-0" client:load>
+                  <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-orange-500 hover:no-underline py-5" client:load>
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 pb-5" client:load>
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+												 -->
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section class="py-20 bg-gradient-to-br from-orange-500 to-orange-600">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Listo para conectarte?</h2>
+          <p class="text-orange-100 text-lg mb-8 max-w-2xl mx-auto">
+            Únete a los más de 100,000 clientes que ya disfrutan de la mejor fibra óptica del Valle y Tolima.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-white text-orange-600 hover:bg-orange-50 text-lg px-8" client:load>
+              Contratar ahora
+              <ArrowRight className="ml-2 w-5 h-5" client:load />
+            </Button>
+            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8" client:load>
+              <Phone className="mr-2 w-5 h-5"  client:load/>
+              Llamar ahora
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer class="bg-gray-900 text-gray-300 py-16">
+        <div class="container mx-auto px-4">
+          <div class="grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                  <Wifi className="w-6 h-6 text-white" client:load />
+                </div>
+                <span class="text-2xl font-bold">
+                  <span class="text-white">Celsia</span>
+                  <span class="text-orange-500"> internet</span>
+                </span>
+              </div>
+              <p class="text-gray-400 mb-6">El internet que quieres. Fibra óptica 100% real para el Valle del Cauca y Tolima.</p>
+              <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors">
+                  <Facebook className="w-5 h-5" client:load />
+                </a>
+                <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors">
+                  <Instagram className="w-5 h-5" client:load />
+                </a>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold mb-4">Planes</h4>
+              <ul class="space-y-2">
+                <li><a href="#" class="hover:text-orange-500 transition-colors">Plan Básico 50 Mbps</a></li>
+                <li><a href="#" class="hover:text-orange-500 transition-colors">Plan Hogar 100 Mbps</a></li>
+                <li><a href="#" class="hover:text-orange-500 transition-colors">Plan Premium 300 Mbps</a></li>
+                <li><a href="#" class="hover:text-orange-500 transition-colors">Plan Ultra 600 Mbps</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold mb-4">Soporte</h4>
+              <ul class="space-y-2">
+                <li><a href="#" class="hover:text-orange-500 transition-colors">Centro de ayuda</a></li>
+                <li><a href="#" class="hover:text-orange-500 transition-colors">Pagar factura</a></li>
+                <li><a href="#" class="hover:text-orange-500 transition-colors">Verificar cobertura</a></li>
+                <li><a href="#" class="hover:text-orange-500 transition-colors">Preguntas frecuentes</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold mb-4">Contacto</h4>
+              <ul class="space-y-3">
+                <li class="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-orange-500" client:load />
+                  <span>01 8000 123 456</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-orange-500" client:load />
+                  <span>soporte@celsiainternet.com</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0" client:load />
+                  <span>Valle del Cauca y Tolima, Colombia</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-500 text-sm">© 2024 Celsia Internet. Todos los derechos reservados.</p>
+            <div class="flex gap-6 text-sm">
+              <a href="#" class="text-gray-500 hover:text-orange-500 transition-colors">Términos y condiciones</a>
+              <a href="#" class="text-gray-500 hover:text-orange-500 transition-colors">Política de privacidad</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+</Layout>
