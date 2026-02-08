@@ -9,15 +9,15 @@ import { Wifi, Zap, Clock, Headphones, MapPin, Check, Phone, Mail, Facebook, Ins
 const plans = [
   {
     name: "Básico",
-    speed: "50",
-    price: "39.900",
+    speed: "100",
+    price: "49.900",
     features: ["Velocidad simétrica", "Router WiFi incluido", "Instalación gratis", "Soporte 24/7"],
     popular: false,
   },
   {
     name: "Hogar",
-    speed: "100",
-    price: "49.900",
+    speed: "200",
+    price: "59.900",
     features: ["Velocidad simétrica", "Router WiFi 5 incluido", "Instalación gratis", "Soporte prioritario", "1 mes gratis"],
     popular: true,
   },
@@ -30,35 +30,41 @@ const plans = [
   },
   {
     name: "Ultra",
-    speed: "600",
-    price: "99.900",
+    speed: "400",
+    price: "79.900",
+    features: ["Velocidad simétrica", "Router WiFi 6E incluido", "Instalación express", "Soporte VIP 24/7", "2 meses gratis", "IP fija incluida"],
+    popular: false,
+  },
+    {
+    name: "Ultra",
+    speed: "500",
+    price: "89.900",
     features: ["Velocidad simétrica", "Router WiFi 6E incluido", "Instalación express", "Soporte VIP 24/7", "2 meses gratis", "IP fija incluida"],
     popular: false,
   },
 ];
 
 const coverage = [
-  { region: "Valle del Cauca", cities: ["El Cerrito", "Ginebra", "Guacarí", "Pradera", "Riofrío", "Rozo", "San Pedro", "Palmira", "Jamundí", "Tuluá", "Buga", "Yumbo"] },
-  { region: "Tolima", cities: ["Carmen de Apicalá", "Chaparral", "Melgar", "Ibagué"] },
+  { region: "Boyacá", cities: ["Ciénega", "Jenesano", "Ramiriquí", "Tibaná"] },
 ];
 
 const testimonials = [
   {
     name: "María García",
-    location: "Palmira, Valle",
-    text: "Mi negocio y mi hogar están conectados con Celsia Internet. Tengo el servicio desde hace dos años. Me parece muy bueno, muy buena velocidad.",
+    location: "Ciénega, Boyacá",
+    text: "El servicio se mantiene estable para clases y trabajo en casa. La instalación fue rápida y la atención muy clara.",
     rating: 5,
   },
   {
     name: "Carlos Rodríguez",
-    location: "Melgar, Tolima",
-    text: "Excelente servicio, nunca se cae y la velocidad es constante. El soporte técnico responde muy rápido cuando lo necesito.",
+    location: "Ramiriquí, Boyacá",
+    text: "Buena velocidad para el día a día del hogar. Podemos usar varios dispositivos sin interrupciones.",
     rating: 5,
   },
   {
     name: "Ana Martínez",
-    location: "Yumbo, Valle",
-    text: "Por fin tenemos fibra óptica de verdad. Las videollamadas ya no se cortan y puedo trabajar desde casa sin problemas.",
+    location: "Tibaná, Boyacá",
+    text: "Ahora las videollamadas y el streaming van fluidos. El soporte responde cuando se necesita.",
     rating: 5,
   },
 ];
@@ -78,13 +84,14 @@ const faqs = [
   },
   {
     question: "¿Hay cláusula de permanencia?",
-    answer: "No, en Celsia Internet no manejamos cláusulas de permanencia. Puedes cancelar tu servicio cuando lo desees sin penalidades.",
+    answer: "No, en Jeferson AFE no manejamos cláusulas de permanencia. Puedes cancelar tu servicio cuando lo desees sin penalidades.",
   },
   {
     question: "¿Cómo puedo pagar mi factura?",
     answer: "Puedes pagar a través de nuestra plataforma online, en puntos de pago autorizados, o mediante débito automático. También aceptamos pagos con PSE y tarjetas de crédito.",
   },
 ];
+
 ---
 
 <Layout>
@@ -97,8 +104,8 @@ const faqs = [
               <Wifi className="w-6 h-6 text-white" client:load />
             </div>
             <span class="text-2xl font-bold">
-              <span class="text-gray-900">Celsia</span>
-              <span class="text-orange-500"> internet</span>
+              <span class="text-gray-900">Jeferson</span>
+              <span class="text-orange-500"> AFE</span>
             </span>
           </div>
           <nav class="hidden md:flex items-center gap-8">
@@ -124,16 +131,24 @@ const faqs = [
         <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30" />
         <div class="container mx-auto px-4 relative">
           <div class="max-w-4xl mx-auto text-center">
-            <Badge className="bg-white/20 text-white border-white/30 mb-6 text-sm px-4 py-1.5" client:load>
-              Primer mes GRATIS en planes seleccionados
-            </Badge>
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+              <Badge className="bg-white/20 text-white border-white/30 text-sm px-4 py-1.5" client:load>
+                Fibra Óptica
+              </Badge>
+              <Badge className="bg-white/20 text-white border-white/30 text-sm px-4 py-1.5" client:load>
+                Cable
+              </Badge>
+              <Badge className="bg-white/20 text-white border-white/30 text-sm px-4 py-1.5" client:load>
+                Plan a la Medida
+              </Badge>
+            </div>
             <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              El internet
+              Jeferson AFE – Internet de Alta Velocidad
               <br />
-              <span class="text-orange-100">que quieres</span>
+              <span class="text-orange-100">Ciénega, Tibaná, Boyacá y Ramiriquí</span>
             </h1>
             <p class="text-xl md:text-2xl text-orange-100 mb-8 max-w-2xl mx-auto">
-              Fibra óptica 100% real con velocidad simétrica. Rápido, estable y al mejor precio del Valle y Tolima.
+              Conéctate y disfruta de un servicio de internet confiable y veloz.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-orange-600 hover:bg-orange-50 text-lg px-8 py-6 font-semibold shadow-lg" client:load>
@@ -146,16 +161,16 @@ const faqs = [
             </div>
             <div class="mt-12 grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div class="text-center">
-                <div class="text-3xl md:text-4xl font-bold text-white">100K+</div>
-                <div class="text-orange-100 text-sm">Clientes felices</div>
+                <div class="text-3xl md:text-4xl font-bold text-white">370+</div>
+                <div class="text-orange-100 text-sm">Puntos de Cobertura</div>
               </div>
               <div class="text-center">
-                <div class="text-3xl md:text-4xl font-bold text-white">99.9%</div>
-                <div class="text-orange-100 text-sm">Disponibilidad</div>
+                <div class="text-3xl md:text-4xl font-bold text-white">100%</div>
+                <div class="text-orange-100 text-sm">Servicio Constante</div>
               </div>
               <div class="text-center">
-                <div class="text-3xl md:text-4xl font-bold text-white">500+</div>
-                <div class="text-orange-100 text-sm">Escuelas conectadas</div>
+                <div class="text-3xl md:text-4xl font-bold text-white">2500+</div>
+                <div class="text-orange-100 text-sm">Servicios Conectados</div>
               </div>
             </div>
           </div>
@@ -167,8 +182,8 @@ const faqs = [
       <section id="beneficios" class="py-20 bg-white">
         <div class="container mx-auto px-4">
           <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">¿Por qué elegir Celsia Internet?</h2>
-            <p class="text-gray-600 text-lg max-w-2xl mx-auto">La mejor experiencia de internet con fibra óptica real hasta tu hogar</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Experimente Jefferson AFE posibilidades ilimitadas</h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">La mejor experiencia de internet con fibra óptica hasta tu hogar</p>
           </div>
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
@@ -176,10 +191,10 @@ const faqs = [
                 <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
                   <Zap className="w-7 h-7 text-white" client:load/>
                 </div>
-                <CardTitle className="text-xl" client:load>Velocidad simétrica</CardTitle>
+                <CardTitle className="text-xl" client:load>Conexión Estable</CardTitle>
               </CardHeader>
               <CardContent client:load>
-                <p class="text-gray-600">Misma velocidad de subida y bajada para streaming, gaming y videollamadas sin interrupciones.</p>
+                <p class="text-gray-600">Conexión estable para trabajar, estudiar y ver contenido sin interrupciones.</p>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
@@ -187,10 +202,10 @@ const faqs = [
                 <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
                   <Shield className="w-7 h-7 text-white" client:load />
                 </div>
-                <CardTitle className="text-xl" client:load>Sin permanencia</CardTitle>
+                <CardTitle className="text-xl" client:load>Velocidad Increíble</CardTitle>
               </CardHeader>
               <CardContent client:load>
-                <p class="text-gray-600">Sin contratos de permanencia. Cancela cuando quieras sin penalidades ni costos adicionales.</p>
+                <p class="text-gray-600">Planes pensados para el uso real del hogar o negocio, con rendimiento constante.</p>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
@@ -198,10 +213,10 @@ const faqs = [
                 <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
                   <Clock className="w-7 h-7 text-white" client:load />
                 </div>
-                <CardTitle className="text-xl" client:load>Instalación rápida</CardTitle>
+                <CardTitle className="text-xl" client:load>Velocidad Simétrica</CardTitle>
               </CardHeader>
               <CardContent client:load>
-                <p class="text-gray-600">Instalación gratuita en 3-5 días hábiles. Router WiFi incluido sin costo adicional.</p>
+                <p class="text-gray-600">Misma velocidad de subida y bajada: ideal para videollamadas, streaming y gaming.</p>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
@@ -209,10 +224,10 @@ const faqs = [
                 <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
                   <Headphones className="w-7 h-7 text-white" client:load/>
                 </div>
-                <CardTitle className="text-xl" client:load>Soporte 24/7</CardTitle>
+                <CardTitle className="text-xl" client:load>Amplia Cobertura</CardTitle>
               </CardHeader>
               <CardContent client:load>
-                <p class="text-gray-600">Equipo de soporte técnico disponible las 24 horas del día, los 7 días de la semana.</p>
+                <p class="text-gray-600">Cobertura en Boyacá: Ciénega, Jenesano, Ramiriquí y Tibaná.</p>
               </CardContent>
             </Card>
           </div>
@@ -277,7 +292,7 @@ const faqs = [
             <div>
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nuestra cobertura</h2>
               <p class="text-gray-600 text-lg mb-8">
-                Ya llegó la fibra óptica que conecta al Valle del Cauca y Tolima. Verifica si tenemos cobertura en tu zona.
+                Boyacá - Ciénega - Jenesano - Ramiriquí - Tibaná
               </p>
               <div class="space-y-6">
                 {coverage.map((area) => (
@@ -334,7 +349,7 @@ const faqs = [
         <div class="container mx-auto px-4">
           <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Lo que dicen nuestros clientes</h2>
-            <p class="text-gray-600 text-lg">Miles de familias ya disfrutan de Celsia Internet</p>
+            <p class="text-gray-600 text-lg">Miles de familias ya disfrutan de Jeferson AFE</p>
           </div>
           <div class="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial) => (
@@ -395,7 +410,7 @@ const faqs = [
         <div class="container mx-auto px-4 text-center">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Listo para conectarte?</h2>
           <p class="text-orange-100 text-lg mb-8 max-w-2xl mx-auto">
-            Únete a los más de 100,000 clientes que ya disfrutan de la mejor fibra óptica del Valle y Tolima.
+            Conéctate y disfruta de un servicio de internet confiable y veloz.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-orange-600 hover:bg-orange-50 text-lg px-8" client:load>
@@ -420,11 +435,11 @@ const faqs = [
                   <Wifi className="w-6 h-6 text-white" client:load />
                 </div>
                 <span class="text-2xl font-bold">
-                  <span class="text-white">Celsia</span>
-                  <span class="text-orange-500"> internet</span>
+                  <span class="text-white">Jeferson</span>
+                  <span class="text-orange-500"> AFE</span>
                 </span>
               </div>
-              <p class="text-gray-400 mb-6">El internet que quieres. Fibra óptica 100% real para el Valle del Cauca y Tolima.</p>
+              <p class="text-gray-400 mb-6">Internet de alta velocidad con servicio confiable para Boyacá.</p>
               <div class="flex gap-4">
                 <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors">
                   <Facebook className="w-5 h-5" client:load />
@@ -461,17 +476,17 @@ const faqs = [
                 </li>
                 <li class="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-orange-500" client:load />
-                  <span>soporte@celsiainternet.com</span>
+                  <span>soporte@jefersonafe.com</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0" client:load />
-                  <span>Valle del Cauca y Tolima, Colombia</span>
+                  <span>Boyacá, Colombia</span>
                 </li>
               </ul>
             </div>
           </div>
           <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-gray-500 text-sm">© 2024 Celsia Internet. Todos los derechos reservados.</p>
+            <p class="text-gray-500 text-sm">© 2024 Jeferson AFE. Todos los derechos reservados.</p>
             <div class="flex gap-6 text-sm">
               <a href="#" class="text-gray-500 hover:text-orange-500 transition-colors">Términos y condiciones</a>
               <a href="#" class="text-gray-500 hover:text-orange-500 transition-colors">Política de privacidad</a>
