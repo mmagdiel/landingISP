@@ -52,4 +52,23 @@ const AccordionContent = React.forwardRef<
 ))
 AccordionContent.displayName = AccordionPrimitive.Content.displayName
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+export function FAQAccordion({ faqs }: { faqs: any[] }) {
+  return (
+    <Accordion type="single" collapsible className="space-y-4">
+      {faqs.map((faq, index) => (
+        <AccordionItem
+          key={index}
+          value={`item-${index}`}
+          className="bg-gray-50 rounded-xl px-6 border-0"
+        >
+          <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-orange-500 hover:no-underline py-5">
+            {faq.question}
+          </AccordionTrigger>
+          <AccordionContent className="text-gray-600 pb-5">
+            {faq.answer}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+}
