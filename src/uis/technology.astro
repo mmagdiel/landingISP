@@ -1,0 +1,67 @@
+---
+import { Card, CardContent, CardHeader, CardTitle } from "../components/card";
+import { Zap, Clock, Headphones, Shield } from "lucide-react";
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Experimente Jefferson AFE posibilidades ilimitadas</h2>
+        <p class="text-gray-600 text-lg">
+          Nuestra red se basa en la tecnología de Fibra Hasta el Hogar para navegar a máxima velocidad. Sin interferencias ni cortes. Ofrecemos a nuestros clientes todas las posibilidades para disfrutar de una tarifa completa que incluya la mejor internet fibra Óptica y televisión. Y todo… ¡al mejor precio!
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
+          <CardHeader client:load>
+            <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
+              <Zap className="w-7 h-7 text-white" client:load />
+            </div>
+            <CardTitle className="text-xl" client:load>Conexión Estable</CardTitle>
+          </CardHeader>
+          <CardContent client:load>
+            <p class="text-gray-600">Conexión estable para trabajar, estudiar y ver contenido sin interrupciones.</p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
+          <CardHeader client:load>
+            <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
+              <Shield className="w-7 h-7 text-white" client:load />
+            </div>
+            <CardTitle className="text-xl" client:load>Velocidad Increíble</CardTitle>
+          </CardHeader>
+          <CardContent client:load>
+            <p class="text-gray-600">Planes pensados para el uso real del hogar o negocio, con rendimiento constante.</p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
+          <CardHeader client:load>
+            <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
+              <Clock className="w-7 h-7 text-white" client:load />
+            </div>
+            <CardTitle className="text-xl" client:load>Velocidad Simétrica</CardTitle>
+          </CardHeader>
+          <CardContent client:load>
+            <p class="text-gray-600">Misma velocidad de subida y bajada: ideal para videollamadas, streaming y gaming.</p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-orange-50 to-white" client:load>
+          <CardHeader client:load>
+            <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-4">
+              <Headphones className="w-7 h-7 text-white" client:load />
+            </div>
+            <CardTitle className="text-xl" client:load>Amplia Cobertura</CardTitle>
+          </CardHeader>
+          <CardContent client:load>
+            <p class="text-gray-600">Ciénega, Ramiriquí, Boyacá, Tibaná y Ventaquemada.</p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </div>
+</section>

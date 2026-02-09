@@ -1,0 +1,43 @@
+---
+import { Button } from "../components/button";
+import { Badge } from "../components/badge";
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+        <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-8">
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <Badge className="bg-orange-500 text-white border-0" client:load>Fibra Óptica</Badge>
+            <div class="text-sm text-gray-500">Happy Clients</div>
+          </div>
+
+          <div class="flex items-baseline gap-3 mb-2">
+            <div class="text-4xl font-bold text-gray-900">$59.900</div>
+            <div class="text-gray-500">/mes</div>
+          </div>
+          <div class="text-lg font-semibold text-orange-600 mb-4">200MB</div>
+
+          <div class="text-gray-600 mb-6">Puede incluir TV Box</div>
+
+          <Button className="bg-orange-500 hover:bg-orange-600 text-white" client:load>
+            Ver plan más a detalle
+          </Button>
+        </div>
+
+        <div class="bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-8 text-white">
+          <div class="text-6xl font-bold leading-none">0 +</div>
+          <div class="text-orange-100 mt-2">Happy Clients</div>
+
+          <div class="mt-8">
+            <div class="text-xl font-bold">Plan destacado</div>
+            <p class="text-orange-100 mt-2">
+              Conectividad estable, velocidad simétrica y soporte eficaz para tu hogar o negocio.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+import { Button } from "../components/button";
+import { Gauge } from "lucide-react";
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto bg-gray-50 border border-gray-200 rounded-3xl p-10 text-center">
+      <div class="mx-auto w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mb-5">
+        <Gauge className="w-7 h-7 text-orange-600" client:load />
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pruebe su velocidad de Internet</h2>
+      <p class="text-gray-600 text-lg mb-8">Use el test de velocidad en línea para verificar su conexión a Internet actual.</p>
+      <Button className="bg-orange-500 hover:bg-orange-600 text-white" client:load>
+        Haz la prueba de velocidad
+      </Button>
+    </div>
+  </div>
+</section>

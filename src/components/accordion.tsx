@@ -52,6 +52,8 @@ const AccordionContent = React.forwardRef<
 ))
 AccordionContent.displayName = AccordionPrimitive.Content.displayName
 
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+
 export function FAQAccordion({ faqs }: { faqs: any[] }) {
   return (
     <Accordion type="single" collapsible className="space-y-4">
