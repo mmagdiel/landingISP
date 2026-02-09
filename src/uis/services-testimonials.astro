@@ -1,0 +1,49 @@
+---
+import { Card, CardContent, CardHeader } from "../components/card";
+import { Quote } from "lucide-react";
+
+const testimonials = [
+  {
+    title: "Conexión estable incluso en días de lluvia",
+    name: "Diana P., Duitama (Boyacá)",
+    text: "Desde que instalamos el servicio, el internet se mantiene estable para clases y trabajo en casa. La atención fue rápida y muy clara.",
+  },
+  {
+    title: "Buena velocidad para el negocio",
+    name: "Javier R., Sogamoso (Boyacá)",
+    text: "En el local necesitamos buena conexión todo el día y nos ha ido muy bien. La instalación fue puntual y el soporte responde.",
+  },
+  {
+    title: "Soporte cercano y sin enredos",
+    name: "Maritza G., Tunja (Boyacá)",
+    text: "Me gustó que el equipo explica todo sencillo y el servicio ha sido constante. Ideal para streaming y videollamadas en familia.",
+  },
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-8">
+        {testimonials.map((t) => (
+          <Card className="border-0 shadow-lg bg-gray-50" client:load>
+            <CardHeader client:load>
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-lg font-bold text-gray-900">{t.title}</div>
+                  <div class="text-sm text-gray-500 mt-1">{t.name}</div>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center flex-shrink-0">
+                  <Quote className="w-5 h-5 text-orange-600" client:load />
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent client:load>
+              <p class="text-gray-700 leading-relaxed">“{t.text}”</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,11 @@
 ---
-const links = [
+type BreadcrumbLink = { label: string; href: string };
+type BreadcrumbProps = { title?: string; links?: BreadcrumbLink[] };
+
+const props = Astro.props as BreadcrumbProps;
+
+const title = props.title ?? "¿Quienes somos?";
+const links: BreadcrumbLink[] = props.links ?? [
   { label: "Home", href: "/" },
   { label: "Contacto", href: "/#contacto" },
 ];
@@ -9,7 +15,7 @@ const links = [
   <div class="container mx-auto px-4 py-10">
     <nav class="text-sm text-gray-600 mb-3" aria-label="Breadcrumb">
       <ol class="flex flex-wrap items-center gap-2">
-        {links.map((link, i) => (
+        {links.map((link: BreadcrumbLink, i: number) => (
           <li class="flex items-center gap-2">
             <a href={link.href} class="hover:text-orange-500 transition-colors font-medium">{link.label}</a>
             {i < links.length - 1 && <span class="text-gray-400">/</span>}
@@ -18,6 +24,6 @@ const links = [
       </ol>
     </nav>
 
-    <h1 class="text-3xl md:text-4xl font-bold text-gray-900">¿Quienes somos?</h1>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{title}</h1>
   </div>
 </section>

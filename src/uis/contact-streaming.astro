@@ -1,0 +1,35 @@
+---
+import { Check } from "lucide-react";
+
+const coverageTagline = "Ciénega - Boyacá - Jenesano - Ramiriquí - Tibaná - V/Quemada";
+
+const bullets = [
+  "Disfruta sin límites de una completa selección de canales nacionales e internacionales de televisión.",
+  "Cine, series, documentales.",
+  "¡Diviértete con la mejor programación!",
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="text-gray-600 font-semibold">{coverageTagline}</div>
+        <h2 class="mt-3 text-3xl md:text-4xl font-bold text-gray-900">La mejor experiencia en Streaming impulsada por Jefferson AFE.</h2>
+      </div>
+
+      <div class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-lg">
+        <ul class="space-y-4">
+          {bullets.map((b) => (
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="mt-0.5 w-7 h-7 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                <Check className="w-4 h-4 text-orange-600" client:load />
+              </span>
+              <span class="font-medium">{b}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

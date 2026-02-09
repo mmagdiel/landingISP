@@ -1,0 +1,56 @@
+---
+import { Phone, Mail, Clock } from "lucide-react";
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-3 gap-6">
+      <div class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-lg">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center">
+            <Phone className="w-5 h-5 text-orange-600" client:load />
+          </div>
+          <h3 class="text-xl font-bold text-gray-900">Llámanos</h3>
+        </div>
+        <p class="text-gray-600 mb-5">¿Preguntas sobre planes, precios o disponibilidad? Haz que tu gente llame a nuestra gente.</p>
+        <div class="space-y-2">
+          <a class="block font-semibold text-gray-900 hover:text-orange-600 transition-colors" href="tel:3134958482">313 495 8482</a>
+          <a class="block font-semibold text-gray-900 hover:text-orange-600 transition-colors" href="tel:3203432121">320 343 2121</a>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-lg">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center">
+            <Clock className="w-5 h-5 text-orange-600" client:load />
+          </div>
+          <h3 class="text-xl font-bold text-gray-900">Horarios de Atención</h3>
+        </div>
+        <ul class="space-y-3 text-gray-700">
+          <li>
+            <div class="font-semibold text-gray-900">Lunes a viernes</div>
+            <div>8:00am a 8:00pm.</div>
+          </li>
+          <li>
+            <div class="font-semibold text-gray-900">Sábados, domingos y festivos</div>
+            <div>8:00am a 12M y de 2:00pm a 8:00pm.</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-lg">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center">
+            <Mail className="w-5 h-5 text-orange-600" client:load />
+          </div>
+          <h3 class="text-xl font-bold text-gray-900">Correos</h3>
+        </div>
+        <div class="space-y-2">
+          <a class="block text-gray-700 hover:text-orange-600 transition-colors" href="mailto:contacto@jefferson-afe.com">contacto@jefferson-afe.com</a>
+          <a class="block text-gray-700 hover:text-orange-600 transition-colors" href="mailto:ventas@jefferson-afe.com">ventas@jefferson-afe.com</a>
+          <a class="block text-gray-700 hover:text-orange-600 transition-colors" href="mailto:servicio@jefferson-afe.com">servicio@jefferson-afe.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

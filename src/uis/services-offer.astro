@@ -1,0 +1,46 @@
+---
+import { Check } from "lucide-react";
+
+const bullets = [
+  {
+    title: "Cortes e inestabilidad",
+    text: "conexión más estable para trabajar, estudiar y ver contenido sin interrupciones.",
+  },
+  {
+    title: "Velocidad que no alcanza",
+    text: "planes pensados para el uso real del hogar o negocio (videollamadas, streaming, varios dispositivos).",
+  },
+  {
+    title: "Soporte que no responde",
+    text: "atención cercana y canales claros para reportes, con seguimiento hasta que quede resuelto.",
+  },
+  {
+    title: "Instalaciones demoradas o “a medias”",
+    text: "instalación ordenada, explicación del servicio y pruebas básicas para que quedes conectado desde el primer día.",
+  },
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Lo que resolvemos para que tu internet no sea un problema</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {bullets.map((b) => (
+          <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-lg">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                <Check className="w-5 h-5 text-orange-600" client:load />
+              </span>
+              <div>
+                <div class="font-bold text-gray-900">{b.title}:</div>
+                <div class="text-gray-600">{b.text}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

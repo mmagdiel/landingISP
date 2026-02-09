@@ -1,0 +1,84 @@
+---
+import { Button } from "../components/button";
+import { ChevronDown } from "lucide-react";
+
+const coverageTagline = "Ciénega - Boyacá - Jenesano - Ramiriquí - Tibaná - V/Quemada";
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10">
+        <div class="text-gray-600 font-semibold">{coverageTagline}</div>
+        <h2 class="mt-3 text-3xl md:text-4xl font-bold text-gray-900">La Mejor Cobertura</h2>
+        <Button className="mt-6 bg-orange-500 hover:bg-orange-600 text-white" client:load>
+          Revisar Cobertura
+        </Button>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group rounded-2xl border border-gray-200 bg-white p-6 shadow-lg" open>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-gray-900">
+            <span>Velocidad</span>
+            <ChevronDown className="h-5 w-5 text-gray-500 transition-transform group-open:rotate-180" client:load />
+          </summary>
+          <div class="mt-4 text-gray-600 space-y-4">
+            <p>
+              La velocidad de internet de fibra óptica es de 1 Gbps. Eso es de 10 a 20 veces más rápido que el cable de 50 a 100 Mbps.
+            </p>
+            <div>
+              <div class="font-semibold text-gray-900 mb-2">Tiempo para descargar una película HD de 2 horas:</div>
+              <ul class="space-y-1">
+                <li><span class="font-medium text-gray-900">Fibra óptica 1 Gbps:</span> 40 segundos</li>
+                <li><span class="font-medium text-gray-900">Cable 100 Mbps:</span> 7 minutos</li>
+                <li><span class="font-medium text-gray-900">DSL 25 Mbps:</span> 30 minutos</li>
+                <li><span class="font-medium text-gray-900">4G LTE 35 Mbps:</span> 25 minutos</li>
+                <li><span class="font-medium text-gray-900">5G 10 Gbps:</span> 4 segundos</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details class="group rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-gray-900">
+            <span>Fiabilidad</span>
+            <ChevronDown className="h-5 w-5 text-gray-500 transition-transform group-open:rotate-180" client:load />
+          </summary>
+          <div class="mt-4 text-gray-600">
+            La fibra óptica puede manejar más usuarios y más datos a velocidades consistentemente más altas. Además, no depende de líneas eléctricas, por lo que es menos propensa a interrupciones mientras el cable permanezca intacto.
+          </div>
+        </details>
+
+        <details class="group rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-gray-900">
+            <span>Sin throttling</span>
+            <ChevronDown className="h-5 w-5 text-gray-500 transition-transform group-open:rotate-180" client:load />
+          </summary>
+          <div class="mt-4 text-gray-600">
+            En horas pico, algunos proveedores reducen la velocidad (“throttling”) para evitar sobrecargas. La fibra óptica es menos susceptible a estas reducciones por congestión.
+          </div>
+        </details>
+
+        <details class="group rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-gray-900">
+            <span>Misma velocidad para descargar y cargar</span>
+            <ChevronDown className="h-5 w-5 text-gray-500 transition-transform group-open:rotate-180" client:load />
+          </summary>
+          <div class="mt-4 text-gray-600">
+            En conexiones por cable suele haber diferencias entre descarga y carga, siendo la carga más lenta. Con fibra óptica se reduce ese problema y se facilita compartir archivos y trabajar desde casa.
+          </div>
+        </details>
+
+        <details class="group rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-gray-900">
+            <span>Televisión de mayor calidad</span>
+            <ChevronDown className="h-5 w-5 text-gray-500 transition-transform group-open:rotate-180" client:load />
+          </summary>
+          <div class="mt-4 text-gray-600">
+            Las transmisiones 4K requieren más ancho de banda. Con fibra óptica es más fácil mantener una experiencia estable para series y películas en alta calidad.
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>

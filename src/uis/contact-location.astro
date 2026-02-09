@@ -1,0 +1,32 @@
+---
+import { MapPin } from "lucide-react";
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center">
+          <MapPin className="w-5 h-5 text-orange-600" client:load />
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Ubicación</h2>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-lg">
+        <div class="px-6 py-5 border-b border-gray-200">
+          <div class="font-semibold text-gray-900">
+            Jefferson Distribuciones y Servicios a 8-13, Cra. 6 #8-1, Ramiriquí, Boyacá
+          </div>
+        </div>
+        <div class="aspect-[16/9] bg-gray-100">
+          <iframe
+            class="w-full h-full"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Jefferson%20Distribuciones%20y%20Servicios%20Cra.%206%20%238-1%20Ramiriqu%C3%AD%20Boyac%C3%A1&output=embed"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
