@@ -3,18 +3,21 @@ import Layout from "../layouts/main.astro";
 import Header from "../uis/header.astro";
 import Footer from "../uis/footer.astro";
 
-import RegulationHero from "../uis/regulation-hero.astro";
+import Breadcrumb from "../uis/breadcrumb.astro";
 import RegulationVital from "../uis/regulation-vital.astro";
 import RegulationQuality from "../uis/regulation-quality.astro";
 import RegulationInternetSano from "../uis/regulation-internet-sano.astro";
 import RegulationParental from "../uis/regulation-parental.astro";
 import RegulationDocs from "../uis/regulation-docs.astro";
+
+const title = "Regulación";
+const links = [{ label: "Home", href: "/" },{ label: "Regulación", href: "/regulacion/" }]
 ---
 
 <Layout>
   <div class="min-h-screen bg-white">
     <Header />
-    <RegulationHero />
+    <Breadcrumb title={title} links={links} />
     <RegulationVital />
     <RegulationQuality />
     <RegulationInternetSano />

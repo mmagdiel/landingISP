@@ -3,18 +3,21 @@ import Layout from "../layouts/main.astro";
 import Header from "../uis/header.astro";
 import Footer from "../uis/footer.astro";
 
-import ContactHero from "../uis/contact-hero.astro";
 import ContactForm from "../uis/contact-form.astro";
 import ContactLocation from "../uis/contact-location.astro";
 import ContactInfo from "../uis/contact-info.astro";
 import ContactCoverageAccordion from "../uis/contact-coverage-accordion.astro";
 import ContactStreaming from "../uis/contact-streaming.astro";
+import Breadcrumb from "../uis/breadcrumb.astro";
+
+const title="Contacto";
+const links=[{ label: "Home", href: "/" },{ label: "Contacto", href: "/contacto/" }]
 ---
 
 <Layout>
   <div class="min-h-screen bg-white">
     <Header />
-    <ContactHero />
+    <Breadcrumb title={title} links={links}/>
     <ContactForm />
     <ContactLocation />
     <ContactInfo />

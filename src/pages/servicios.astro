@@ -7,24 +7,18 @@ import Breadcrumb from "../uis/breadcrumb.astro";
 import ServicesSteps from "../uis/services-steps.astro";
 import ServicesOffer from "../uis/services-offer.astro";
 import ServicesTestimonials from "../uis/services-testimonials.astro";
+
+const title = "Amplia Cobertura";
+const links = [{ label: "Home", href: "/" },{ label: "Services", href: "/services/" }]
 ---
 
 <Layout>
   <div class="min-h-screen bg-white">
     <Header />
-    <Breadcrumb
-      title="Amplia Cobertura"
-      links={[
-        { label: "services", href: "/services/amplia-cobertura/" },
-        { label: "Home", href: "/" },
-        { label: "Contacto", href: "/#contacto" },
-      ]}
-    />
-
+    <Breadcrumb title={title} links={links} />
     <ServicesSteps />
     <ServicesOffer />
     <ServicesTestimonials />
-
     <Footer />
   </div>
 </Layout>

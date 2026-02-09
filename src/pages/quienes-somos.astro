@@ -9,12 +9,15 @@ import FeaturedPlan from "../uis/featured-plan.astro";
 import Speedtest from "../uis/speedtest.astro";
 import CoverageLine from "../uis/coverage-line.astro";
 import Technology from "../uis/technology.astro";
+
+const title = "Quiénes Somos";
+const links = [{ label: "Home", href: "/" },{ label: "Quiénes Somos", href: "/quienes-somos/" }]
 ---
 
 <Layout>
   <div class="min-h-screen bg-white">
     <Header />
-    <Breadcrumb />
+    <Breadcrumb title={title} links={links} />
     <Institution />
     <FeaturedPlan />
     <Speedtest />
