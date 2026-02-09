@@ -1,0 +1,67 @@
+---
+import { Button } from "../components/button";
+import { Badge } from "../components/badge";
+import { MapPin } from "lucide-react";
+
+const coverage = [
+  { region: "Boyacá", cities: ["Ciénega", "Jenesano", "Ramiriquí", "Tibaná"] },
+];
+---
+
+<section id="cobertura" class="py-20 bg-white">
+	<div class="container mx-auto px-4">
+			<div class="grid lg:grid-cols-2 gap-12 items-center">
+			<div>
+					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nuestra cobertura</h2>
+					<p class="text-gray-600 text-lg mb-8">
+					Boyacá - Ciénega - Jenesano - Ramiriquí - Tibaná
+					</p>
+					<div class="space-y-6">
+					{coverage.map((area) => (
+							<div class="bg-gray-50 rounded-2xl p-6">
+							<div class="flex items-center gap-3 mb-4">
+									<MapPin className="w-6 h-6 text-orange-500" client:load />
+									<h3 class="text-xl font-bold text-gray-900">{area.region}</h3>
+							</div>
+							<div class="flex flex-wrap gap-2">
+									{area.cities.map((city) => (
+									<Badge variant="secondary" className="bg-white text-gray-700 border border-gray-200 px-3 py-1" client:load>
+											{city}
+									</Badge>
+									))}
+							</div>
+							</div>
+					))}
+					</div>
+					<Button className="mt-8 bg-orange-500 hover:bg-orange-600 text-white px-8" client:load>
+					<MapPin className="w-4 h-4 mr-2" client:load />
+					Verificar mi dirección
+					</Button>
+			</div>
+			<div class="relative">
+					<div class="bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-8 text-white">
+					<h3 class="text-2xl font-bold mb-4">Estamos creciendo</h3>
+					<p class="text-orange-100 mb-8">Cada día llegamos a más hogares con internet de fibra óptica real. Pronto estaremos en tu municipio.</p>
+					<div class="grid grid-cols-2 gap-6">
+							<div class="bg-white/10 rounded-xl p-4 text-center">
+							<div class="text-3xl font-bold">+ 4</div>
+							<div class="text-sm text-orange-100">Municipios</div>
+							</div>
+							<div class="bg-white/10 rounded-xl p-4 text-center">
+							<div class="text-3xl font-bold">1</div>
+							<div class="text-sm text-orange-100">Departamentos</div>
+							</div>
+							<div class="bg-white/10 rounded-xl p-4 text-center">
+							<div class="text-3xl font-bold">+ 4</div>
+							<div class="text-sm text-orange-100">Años de experiencia</div>
+							</div>
+							<div class="bg-white/10 rounded-xl p-4 text-center">
+							<div class="text-3xl font-bold">99.9%</div>
+							<div class="text-sm text-orange-100">Fibra óptica real</div>
+							</div>
+					</div>
+					</div>
+			</div>
+			</div>
+	</div>
+</section>

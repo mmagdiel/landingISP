@@ -1,0 +1,38 @@
+---
+import { FAQAccordion } from "../components/accordion";
+
+const faqs = [
+  {
+    question: "¿Qué es la fibra óptica simétrica?",
+    answer: "La fibra óptica simétrica significa que tienes la misma velocidad de subida y de bajada. Esto es ideal para videollamadas, streaming en vivo, gaming online y trabajo remoto.",
+  },
+  {
+    question: "¿Cuánto tiempo toma la instalación?",
+    answer: "La instalación normalmente se realiza en 3-5 días hábiles después de la solicitud. El proceso de instalación en tu hogar toma aproximadamente 2 horas.",
+  },
+  {
+    question: "¿Qué incluye el servicio?",
+    answer: "Todos nuestros planes incluyen router WiFi, instalación gratuita, soporte técnico y sin cláusula de permanencia. Además, ofrecemos tu primer mes gratis en planes seleccionados.",
+  },
+  {
+    question: "¿Hay cláusula de permanencia?",
+    answer: "No, en Jeferson AFE no manejamos cláusulas de permanencia. Puedes cancelar tu servicio cuando lo desees sin penalidades.",
+  },
+  {
+    question: "¿Cómo puedo pagar mi factura?",
+    answer: "Puedes pagar a través de nuestra plataforma online, en puntos de pago autorizados, o mediante débito automático. También aceptamos pagos con PSE y tarjetas de crédito.",
+  },
+];
+---
+
+<section id="faq" class="py-20 bg-white">
+	<div class="container mx-auto px-4">
+		<div class="max-w-3xl mx-auto">
+		<div class="text-center mb-12">
+				<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Preguntas frecuentes</h2>
+				<p class="text-gray-600 text-lg">Resolvemos tus dudas sobre nuestro servicio</p>
+		</div>
+		<FAQAccordion client:only="react" faqs={faqs} />
+		</div>
+	</div>
+</section>

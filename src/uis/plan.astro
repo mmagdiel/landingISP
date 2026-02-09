@@ -1,0 +1,94 @@
+---
+import { Button } from "../components/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../components/card";
+import { Check } from "lucide-react";
+
+
+const plans = [
+  {
+    name: "Básico",
+    speed: "100",
+    price: "49.900",
+    features: ["Velocidad simétrica", "Router WiFi incluido", "Instalación gratis", "Soporte 24/7"],
+    popular: false,
+  },
+  {
+    name: "Hogar",
+    speed: "200",
+    price: "59.900",
+    features: ["Velocidad simétrica", "Router WiFi 5 incluido", "Instalación gratis", "Soporte prioritario", "1 mes gratis"],
+    popular: true,
+  },
+  {
+    name: "Premium",
+    speed: "300",
+    price: "69.900",
+    features: ["Velocidad simétrica", "Router WiFi 6 incluido", "Instalación gratis", "Soporte VIP", "1 mes gratis", "IP fija opcional"],
+    popular: false,
+  },
+  {
+    name: "Ultra",
+    speed: "400",
+    price: "79.900",
+    features: ["Velocidad simétrica", "Router WiFi 6E incluido", "Instalación express", "Soporte VIP 24/7", "2 meses gratis", "IP fija incluida"],
+    popular: false,
+  },
+    {
+    name: "Ultra",
+    speed: "500",
+    price: "89.900",
+    features: ["Velocidad simétrica", "Router WiFi 6E incluido", "Instalación express", "Soporte VIP 24/7", "2 meses gratis", "IP fija incluida"],
+    popular: false,
+  },
+];
+---
+
+<section id="planes" class="py-20 bg-gray-50">
+	<div class="container mx-auto px-4">
+		<div class="text-center mb-16">
+		<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Planes de fibra óptica</h2>
+		<p class="text-gray-600 text-lg max-w-2xl mx-auto">Elige el plan perfecto para ti. Todos incluyen instalación gratis y router WiFi.</p>
+		</div>
+		<div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+		{plans.map((plan) => (
+				<Card key={plan.name} className={`relative overflow-hidden transition-all duration-300 hover:scale-105 ${plan.popular ? "border-2 border-orange-500 shadow-xl" : "border border-gray-200 shadow-lg"}`}>
+				{plan.popular && (
+						<div class="absolute top-0 right-0 bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-bl-lg">
+						MÁS POPULAR
+						</div>
+				)}
+				<CardHeader className="text-center pb-2" client:load>
+						<CardTitle className="text-2xl font-bold text-gray-900" client:load>{plan.name}</CardTitle>
+						<div class="mt-4">
+						<span class="text-5xl font-bold text-orange-500">{plan.speed}</span>
+						<span class="text-2xl text-gray-600 ml-1">Mbps</span>
+						</div>
+				</CardHeader>
+				<CardContent className="text-center" client:load>
+						<div class="mb-6">
+						<span class="text-sm text-gray-500">Desde</span>
+						<div class="flex items-baseline justify-center gap-1">
+								<span class="text-lg text-gray-600">$</span>
+								<span class="text-3xl font-bold text-gray-900">{plan.price}</span>
+								<span class="text-gray-500">/mes</span>
+						</div>
+						</div>
+						<ul class="space-y-3 text-left">
+						{plan.features.map((feature) => (
+								<li class="flex items-center gap-2 text-gray-600">
+								<Check className="w-5 h-5 text-orange-500 flex-shrink-0" client:load />
+								<span>{feature}</span>
+								</li>
+						))}
+						</ul>
+				</CardContent>
+				<CardFooter client:load>
+						<Button className={`w-full ${plan.popular ? "bg-orange-500 hover:bg-orange-600" : "bg-gray-900 hover:bg-gray-800"} text-white`} client:load>
+						Contratar ahora
+						</Button>
+				</CardFooter>
+				</Card>
+		))}
+		</div>
+	</div>
+</section>
