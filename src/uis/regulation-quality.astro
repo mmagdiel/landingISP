@@ -1,0 +1,68 @@
+---
+import { Download } from "lucide-react";
+
+const indicators = [
+  { title: "Retardo en un sentido", href: "#" },
+  { title: "Transmisión de datos fallidos", href: "#" },
+  { title: "Velocidad en transmisión de datos", href: "#" },
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">Gestión de Calidad</h2>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Política de Calidad</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Jefferson AFE es una empresa boyacense comprometida y con el firme propósito de satisfacer las necesidades de nuestros clientes, así como una clara orientación hacia la calidad, con procesos continuos y dinámicos. Jefferson AFE S.A.S. no se hace responsable por los niveles de servicio acordados cuando se presenten fallas imputables al cliente, en cuanto a condiciones ambientales, de instalación y operación.
+          </p>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Objetivos de Calidad</h3>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex gap-3">
+              <span class="mt-2 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />
+              <span>
+                Jefferson AFE S.A.S. ofrece una disponibilidad del servicio extremo a extremo por el canal del <span class="font-semibold">96.6%</span>, medida en periodos mensuales por enlace.
+              </span>
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />
+              <span>
+                Las ventanas de mantenimiento o mejoramiento programadas serán acordadas con los usuarios para tareas de prevención o mejoramiento de la plataforma o capacidad instalada, las cuales se realizarán en horas no hábiles.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-white border border-gray-200 rounded-3xl p-8 shadow-lg">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+          <h3 class="text-xl font-bold text-gray-900">Indicadores de Calidad</h3>
+          <div class="text-sm text-gray-500">Clic para su descarga</div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4">
+          {indicators.map((item) => (
+            <a
+              href={item.href}
+              class="group rounded-2xl border border-gray-200 bg-gray-50 p-6 transition-all hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div class="font-semibold text-gray-900">{item.title}</div>
+                <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center">
+                  <Download className="w-5 h-5 text-orange-600" client:load />
+                </div>
+              </div>
+              <div class="mt-3 text-sm text-gray-600 group-hover:text-gray-700">Descargar</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

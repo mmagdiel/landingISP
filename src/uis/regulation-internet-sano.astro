@@ -1,0 +1,82 @@
+---
+import { ExternalLink } from "lucide-react";
+
+const institutions = [
+  {
+    name: "Ministerio de Comunicaciones",
+    cta: "Página web (clic aquí)",
+    href: "#",
+    text: "Denuncia la pornografía en línea: protege a los más vulnerables con tu reporte al Ministerio de Comunicaciones.",
+    extra: ["Línea de atención: 01 800 0912667"],
+  },
+  {
+    name: "Fiscalía General de la Nación",
+    cta: "Página web (clic aquí)",
+    href: "#",
+    text: "Pornografía ilegal: todos somos responsables de denunciar y prevenir su difusión.",
+    extra: ["Línea de atención: 01 800 0912280"],
+  },
+  {
+    name: "Dirección Central de la Policía Judicial – DIJIN",
+    cta: "Página web (clic aquí)",
+    href: "#",
+    text: "Grupo Investigativo Delitos Informáticos:",
+    extra: [
+      "Carrera 77A #45-61 Barrio Modelia",
+      "Teléfonos: PBX 426 6900 Ext. 6301-6302",
+      "Directo: 4266300",
+      "Correo: adelinfo@dijin.policia.gov.co",
+    ],
+  },
+  {
+    name: "Instituto Colombiano de Bienestar Familiar",
+    cta: "Página web (clic aquí)",
+    href: "#",
+    text: "",
+    extra: [
+      "Teléfonos Bogotá: 01 8000 91 8080 - 6605520 - 6605530 - 6605540",
+      "Horario: 7am a 9pm de lunes a domingo",
+    ],
+  },
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Internet Sano</h2>
+      <h3 class="text-xl font-bold text-gray-900 mb-4">Denuncie la pornografía infantil</h3>
+      <p class="text-gray-600 text-lg mb-10">
+        En cumplimiento con la Ley 679 de 2001 y con el Decreto 1524 de 2004, JEFFERSON AFE S.A.S. pone a su disposición los siguientes enlaces que puede visitar para realizar denuncias relacionadas con contenidos de pornografía infantil o páginas que promueven servicios sexuales con niños.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {institutions.map((inst) => (
+          <div class="rounded-3xl border border-gray-200 bg-gray-50 p-8 shadow-lg">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <div class="text-lg font-bold text-gray-900">{inst.name}</div>
+                {inst.text && <div class="text-gray-600 mt-2">{inst.text}</div>}
+              </div>
+              <a
+                href={inst.href}
+                class="flex items-center gap-2 text-sm font-semibold text-orange-600 hover:text-orange-700"
+              >
+                {inst.cta}
+                <ExternalLink className="w-4 h-4" client:load />
+              </a>
+            </div>
+
+            {inst.extra?.length ? (
+              <ul class="mt-4 space-y-2 text-gray-700">
+                {inst.extra.map((line) => (
+                  <li>{line}</li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
