@@ -5,7 +5,7 @@ import { Button } from "../components/button";
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
     <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-2">
+        <a href="/" class="flex items-center gap-2">
         <div class="w-10 h-10 rounded-lg flex items-center justify-center">
             <svg
                 version="1.0"
@@ -45,21 +45,22 @@ import { Button } from "../components/button";
             <span class="text-gray-900">Jeferson</span>
             <span class="text-orange-500"> AFE</span>
         </span>
-        </div>
+        </a>
         <nav class="hidden md:flex items-center gap-8">
-        <a href="#planes" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Planes</a>
-        <a href="#cobertura" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Cobertura</a>
-        <a href="#beneficios" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Beneficios</a>
-        <a href="#faq" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Preguntas</a>
+        <a href="/quienes-somos/" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">¿Quiénes somos?</a>
+        <a href="/regulacion/" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Regulación</a>
+        <a href="/servicios/" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Servicios</a>
+        <a href="/#cobertura" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Cobertura</a>
+        <a href="/#beneficios" class="text-gray-600 hover:text-orange-500 transition-colors font-medium">Beneficios</a>
         </nav>
         <div class="flex items-center gap-3">
-        <Button variant="ghost" className="hidden sm:flex text-gray-700 hover:text-orange-500" client:load>
+        <a href="/contacto/" class="hidden sm:flex text-gray-700 hover:text-orange-500 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
             <Phone className="w-4 h-4 mr-2" client:load />
             Contáctanos
-        </Button>
-        <Button className="bg-orange-500 hover:bg-orange-600 text-white" client:load>
+        </a>
+        <a href="/#planes" class="bg-orange-500 hover:bg-orange-600 text-white inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">
             Contratar ahora
-        </Button>
+        </a>
         </div>
     </div>
 </header>
