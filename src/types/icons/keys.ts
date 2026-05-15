@@ -4,7 +4,7 @@ const edit = ["edit", "trash", "copy", "star", "mapPin", "send", "icon_cloud"];
 const arrow = ["right", "left", "arrowRight", "up", "down", "logo", "smartphone"];
 const domain = ["utensils", "listChecks", "packageCheck", "chefHat"];
 const theme = ["plus", "x", "sun", "moon", "menuSquare", "calendar"];
-const social = ["mail", "facebook", "instagram", "twitter", "linkedin"];
+const social = ["mail", "facebook", "instagram", "twitter", "linkedin", "users"];
 const merge = [...chart, ...edit, ...theme, ...base, ...domain];
 
 const Icons = [...arrow, ...social, ...merge] as const;

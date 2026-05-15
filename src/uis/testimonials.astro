@@ -1,6 +1,7 @@
 ---
 import { Card, CardFooter, CardHeader } from "../components/card";
 import { Star, Users } from "lucide-react";
+import Icon from "./Icon.astro";
 
 const testimonials = [
   {
@@ -44,7 +45,7 @@ const testimonials = [
 				<CardFooter className="border-t pt-4" client:load>
 						<div class="flex items-center gap-3">
 						<div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-								<Users className="w-6 h-6 text-orange-500" client:load />
+								<Icon id="users" className="w-6 h-6 text-orange-500" />
 						</div>
 						<div>
 								<div class="font-semibold text-gray-900">{testimonial.name}</div>

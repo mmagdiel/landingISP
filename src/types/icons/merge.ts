@@ -20,6 +20,7 @@ export const mapperIcon: MapperIcon = {
   menu: "0 0 24 24",
   mail: "0 0 24 24",
   phone: "0 0 24 24",
+  users: "0 0 24 24",
   dolar: "0 0 24 24",
   clock: "0 0 24 24",
   cloud: "0 0 24 24",

@@ -1,6 +1,6 @@
 ---
 import type { LayoutProps } from "../types"
-
+import Sprit from "../uis/Sprits.astro"
 import "../styles/global.css"
 
 const props = Astro.props as LayoutProps;
@@ -17,5 +17,6 @@ const title = props.title ?? "¿Quienes somos?";
 	</head>
 	<body>
     	<slot />
+			<Sprit />
 	</body>
 </html>
