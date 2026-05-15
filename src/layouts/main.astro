@@ -1,5 +1,10 @@
 ---
+import type { LayoutProps } from "../types"
+
 import "../styles/global.css"
+
+const props = Astro.props as LayoutProps;
+const title = props.title ?? "¿Quienes somos?";
 ---
 
 <html lang="en">
@@ -8,7 +13,7 @@ import "../styles/global.css"
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{title}</title>
 	</head>
 	<body>
     	<slot />

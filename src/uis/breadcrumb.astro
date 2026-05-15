@@ -1,6 +1,5 @@
 ---
-type BreadcrumbLink = { label: string; href: string };
-type BreadcrumbProps = { title?: string; links?: BreadcrumbLink[] };
+import type { BreadcrumbLink, BreadcrumbProps } from "../types"
 
 const props = Astro.props as BreadcrumbProps;
 

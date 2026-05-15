@@ -1,0 +1,17 @@
+---
+import { getIcon } from "../services";
+
+const { id, size, color, className } = Astro.props;
+
+const { viewBox, width, height, fill } = getIcon(id, size, color);
+---
+
+<svg
+  viewBox={viewBox}
+  width={width}
+  height={height}
+  fill={fill}
+  class={className}
+>
+  <use href={`#icon_${id}`}></use>
+</svg>
