@@ -1,0 +1,48 @@
+---
+import { ArrowUpDown, X } from "lucide-react";
+---
+<aside 
+  id="sort-sidebar" 
+  class="fixed inset-y-0 right-0 z-50 invisible opacity-0 lg:visible lg:opacity-100 lg:static lg:z-auto w-full lg:w-48 flex-shrink-0 transition-all duration-300"
+>
+  <div id="sort-overlay" class="absolute inset-0 bg-neutral-950/20 lg:hidden backdrop-blur-xs"></div>
+  
+  <div class="absolute top-0 right-0 bottom-0 w-full max-w-[260px] bg-white p-5 overflow-y-auto shadow-xl lg:shadow-none lg:bg-transparent lg:p-0 lg:w-full lg:static lg:sticky lg:top-6 flex flex-col h-full lg:h-auto" id="sort-container">
+    
+    <div class="flex items-center justify-between pb-3 mb-4 border-b border-neutral-200/60 lg:hidden flex-shrink-0">
+      <div class="flex items-center gap-2">
+        <ArrowUpDown className="w-3.5 h-3.5 text-neutral-900" client:load />
+        <span class="font-bold text-neutral-900 text-sm">Ordenar catálogo</span>
+      </div>
+      <button id="btn-close-sort" class="p-1 text-neutral-400 hover:text-neutral-700 rounded-md" aria-label="Cerrar orden">
+        <X className="w-4 h-4" client:load />
+      </button>
+    </div>
+
+    <div class="bg-white lg:border lg:border-neutral-200/50 lg:rounded-xl lg:p-4 lg:shadow-xs space-y-4">
+      <div>
+        <h4 class="font-bold text-[10px] uppercase tracking-wider text-neutral-400 mb-2.5">Ordenar por</h4>
+        <div class="space-y-1">
+          {[
+            { value: "default", label: "Relevancia" },
+            { value: "price-asc", label: "Precio: Menor a Mayor" },
+            { value: "price-desc", label: "Precio: Mayor a Menor" },
+            { value: "rating", label: "Mejor Calificados" }
+          ].map((sortOption, index) => (
+            <label class="flex items-center gap-2 py-1 px-1.5 rounded-lg text-xs font-medium text-neutral-500 cursor-pointer hover:text-neutral-900 hover:bg-neutral-50 transition-all select-none">
+              <input 
+                type="radio" 
+                name="sort-option" 
+                value={sortOption.value} 
+                checked={index === 0} 
+                class="sort-input text-neutral-900 focus:ring-neutral-900/10 w-3.5 h-3.5 border-neutral-300" 
+              />
+              <span class="truncate">{sortOption.label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</aside>

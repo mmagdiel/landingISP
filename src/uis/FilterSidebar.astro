@@ -1,0 +1,77 @@
+---
+import { SlidersHorizontal, X } from "lucide-react";
+
+interface Props {
+  categories: string[];
+}
+
+const { categories } = Astro.props;
+---
+<aside 
+  id="filter-sidebar" 
+  class="fixed inset-0 z-50 invisible opacity-0 lg:visible lg:opacity-100 lg:static lg:z-auto w-full lg:w-52 flex-shrink-0 transition-all duration-300"
+>
+  <div id="filter-overlay" class="absolute inset-0 bg-neutral-950/20 lg:hidden backdrop-blur-xs"></div>
+  
+  <div class="absolute top-0 left-0 bottom-0 w-full max-w-[260px] bg-white p-5 overflow-y-auto shadow-xl lg:shadow-none lg:bg-transparent lg:p-0 lg:w-full lg:static lg:sticky lg:top-6 flex flex-col h-full lg:h-auto" id="filter-container">
+    
+    <div class="flex items-center justify-between pb-3 mb-4 border-b border-neutral-200/60 lg:hidden flex-shrink-0">
+      <div class="flex items-center gap-2">
+        <SlidersHorizontal className="w-3.5 h-3.5 text-neutral-900" client:load />
+        <span class="font-bold text-neutral-900 text-sm">Filtros</span>
+      </div>
+      <button id="btn-close-filters" class="p-1 text-neutral-400 hover:text-neutral-700 rounded-md" aria-label="Cerrar filtros">
+        <X className="w-4 h-4" client:load />
+      </button>
+    </div>
+
+    <div class="space-y-4">
+      {/* CATEGORÍAS */}
+      <div class="bg-white lg:border lg:border-neutral-200/50 lg:rounded-xl lg:p-4 lg:shadow-xs">
+        <h4 class="font-bold text-[10px] uppercase tracking-wider text-neutral-400 mb-2.5">Categorías</h4>
+        <div class="space-y-1">
+          {categories.map((category) => (
+            <label class="flex items-center gap-2 py-1 px-1.5 rounded-lg text-xs font-medium text-neutral-500 cursor-pointer hover:text-neutral-900 hover:bg-neutral-50 transition-all select-none">
+              <input 
+                type="radio" 
+                name="category-filter" 
+                value={category} 
+                checked={category === "Todos"}
+                class="category-input text-neutral-900 focus:ring-neutral-900/10 w-3.5 h-3.5 border-neutral-300" 
+              />
+              <span class="truncate">{category.replace("Accesorios / ", "")}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* RANGOS DE PRECIO */}
+      <div class="bg-white lg:border lg:border-neutral-200/50 lg:rounded-xl lg:p-4 lg:shadow-xs">
+        <h4 class="font-bold text-[10px] uppercase tracking-wider text-neutral-400 mb-2.5">Precio</h4>
+        <div class="space-y-1">
+          {[
+            { value: "all", label: "Cualquier precio" },
+            { value: "under-100", label: "Hasta $100k" },
+            { value: "100-500", label: "$100k - $500k" },
+            { value: "over-500", label: "Más de $500k" }
+          ].map((range, index) => (
+            <label class="flex items-center gap-2 py-1 px-1.5 rounded-lg text-xs font-medium text-neutral-500 cursor-pointer hover:text-neutral-900 hover:bg-neutral-50 transition-all select-none">
+              <input 
+                type="radio" 
+                name="price-range" 
+                value={range.value} 
+                checked={index === 0} 
+                class="price-input text-neutral-900 focus:ring-neutral-900/10 w-3.5 h-3.5 border-neutral-300" 
+              />
+              <span class="truncate">{range.label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <button id="btn-clean" class="w-full mt-4 bg-white border border-neutral-200 text-neutral-600 text-[11px] py-2 rounded-xl font-bold hover:bg-neutral-50 transition-all shadow-xs flex-shrink-0">
+      Reiniciar filtros
+    </button>
+  </div>
+</aside>
