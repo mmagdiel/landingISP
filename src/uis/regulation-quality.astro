@@ -1,39 +1,53 @@
 ---
 import { Download } from "lucide-react";
 
+// Indicadores para el map
 const indicators = [
   { title: "Retardo en un sentido", href: "#" },
   { title: "Transmisión de datos fallidos", href: "#" },
   { title: "Velocidad en transmisión de datos", href: "#" },
 ];
+
+// Refactorizacion
+const titleInitial = "Gestión de Calidad"
+const policyData = {
+  title: "Política de Calidad",
+  description: "Jefferson AFE es una empresa boyacense comprometida y con el firme propósito de satisfacer las necesidades de nuestros clientes, así como una clara orientación hacia la calidad, con procesos continuos y dinámicos. Jefferson AFE S.A.S. no se hace responsable por los niveles de servicio acordados cuando se presenten fallas imputables al cliente, en cuanto a condiciones ambientales, de instalación y operación."
+};
+const calidate = {
+  title:"Objetivos de Calidad",
+  subtitle1:"Jefferson AFE S.A.S. ofrece una disponibilidad del servicio extremo a extremo por el canal del 96.6%, medida en periodos mensuales por enlace.",
+  subtitle2: "Las ventanas de mantenimiento o mejoramiento programadas serán acordadas con los usuarios para tareas de prevención o mejoramiento de la plataforma o capacidad instalada, las cuales se realizarán en horas no hábiles."
+}
 ---
 
 <section class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">Gestión de Calidad</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">{titleInitial}</h2>
 
       <div class="grid lg:grid-cols-2 gap-8">
         <div class="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Política de Calidad</h3>
+          {/* REFACTORIZACIÓN: Llamado correcto a las propiedades del objeto con una sola llave */}
+          <h3 class="text-xl font-bold text-gray-900 mb-4">{policyData.title}</h3>
           <p class="text-gray-600 leading-relaxed">
-            Jefferson AFE es una empresa boyacense comprometida y con el firme propósito de satisfacer las necesidades de nuestros clientes, así como una clara orientación hacia la calidad, con procesos continuos y dinámicos. Jefferson AFE S.A.S. no se hace responsable por los niveles de servicio acordados cuando se presenten fallas imputables al cliente, en cuanto a condiciones ambientales, de instalación y operación.
+            {policyData.description}
           </p>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Objetivos de Calidad</h3>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">{calidate.title}</h3>
           <ul class="space-y-3 text-gray-700">
             <li class="flex gap-3">
               <span class="mt-2 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />
               <span>
-                Jefferson AFE S.A.S. ofrece una disponibilidad del servicio extremo a extremo por el canal del <span class="font-semibold">96.6%</span>, medida en periodos mensuales por enlace.
+                {calidate.subtitle1}
               </span>
             </li>
             <li class="flex gap-3">
               <span class="mt-2 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />
               <span>
-                Las ventanas de mantenimiento o mejoramiento programadas serán acordadas con los usuarios para tareas de prevención o mejoramiento de la plataforma o capacidad instalada, las cuales se realizarán en horas no hábiles.
+                {calidate.subtitle2}
               </span>
             </li>
           </ul>

@@ -1,0 +1,380 @@
+---
+import Layout from "../layouts/main.astro";
+import Header from "../uis/header.astro";
+import Footer from "../uis/footer.astro";
+import ProductCard from "../uis/productCard.astro";
+import { Button } from "../components/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../components/card";
+import { ShoppingCart, Star, SlidersHorizontal, Search, X, ArrowUpDown } from "lucide-react"; 
+import { productsData as products } from "../services/productos";
+import Breadcrumb from "../uis/breadcrumb.astro";
+
+const title = "Productos Electrónicos";
+const links = [{ label: "Home", href: "/" }, { label: "Productos", href: "/productos/" }];
+const categories = ["Todos", "Celulares", "Accesorios / Cargadores", "Accesorios / Cables", "Audio"];
+
+---
+
+<Layout>
+  <div class="min-h-screen bg-[#F8F9FA] flex flex-col justify-between font-sans antialiased text-neutral-800 selection:bg-orange-500/10 selection:text-orange-600">
+    <div>
+      <Header />
+      
+      {/* SECCIÓN CABECERA */}
+      <div class="bg-white border-b border-neutral-200/50 py-4 sm:py-6">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumb title={title} links={links} />
+          <div class="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900">Catálogo de Componentes</h1>
+              <p class="text-xs text-neutral-400 mt-0.5">Equipos premium seleccionados con la mayor precisión técnica.</p>
+            </div>
+            
+            {/* BUSCADOR ESTILIZADO */}
+            <div class="relative w-full sm:w-72 lg:w-80 group">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-400 group-focus-within:text-neutral-900 transition-colors pointer-events-none" client:load />
+              <input 
+                type="text" 
+                id="search-input"
+                placeholder="Buscar dispositivo..." 
+                class="w-full pl-9 pr-4 py-2 bg-neutral-50 border border-neutral-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-neutral-200 focus:border-neutral-400 focus:bg-white transition-all text-neutral-800 font-medium"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* BARRA DE ACCESO RÁPIDO PARA MÓVILES Y TABLETS (768px) */}
+      <div class="bg-white border-b border-neutral-100 lg:hidden py-2 px-4 overflow-x-auto flex items-center justify-between gap-2 sticky top-0 z-20 shadow-xs">
+        <div class="flex items-center gap-1.5 overflow-x-auto scrollbar-none flex-1">
+          <button 
+            id="btn-open-filters" 
+            class="flex items-center gap-1 bg-neutral-900 text-white rounded-lg px-2.5 py-1.5 text-[11px] font-bold shadow-xs whitespace-nowrap"
+          >
+            <SlidersHorizontal className="w-3 h-3" client:load />
+            Filtros
+          </button>
+          <div class="w-[1px] bg-neutral-200 h-4 flex-shrink-0"></div>
+          {categories.slice(1).map((category) => (
+            <button 
+              class="mobile-quick-tag px-2.5 py-1.5 bg-neutral-50 border border-neutral-200/60 rounded-lg text-[11px] font-medium text-neutral-500 whitespace-nowrap transition-colors"
+              data-value={category}
+            >
+              {category.replace("Accesorios / ", "")}
+            </button>
+          ))}
+        </div>
+
+        {/* Botón Móvil para abrir el Filtro Derecho (Ordenamiento) */}
+        <button 
+          id="btn-open-sort" 
+          class="flex items-center gap-1 bg-white border border-neutral-200 text-neutral-700 rounded-lg px-2.5 py-1.5 text-[11px] font-bold shadow-xs whitespace-nowrap"
+        >
+          <ArrowUpDown className="w-3 h-3" client:load />
+          Ordenar
+        </button>
+      </div>
+      
+      {/* CONTENEDOR PRINCIPAL TRIPLE (Izquierda - Catálogo - Derecha) */}
+      <section class="py-5 sm:py-8 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="flex flex-col lg:flex-row gap-6 items-start">
+          
+          {/* 1. BARRA LATERAL IZQUIERDA (FILTROS) */}
+          <aside 
+            id="filter-sidebar" 
+            class="fixed inset-0 z-50 invisible opacity-0 lg:visible lg:opacity-100 lg:static lg:z-auto w-full lg:w-52 flex-shrink-0 transition-all duration-300"
+          >
+            <div id="filter-overlay" class="absolute inset-0 bg-neutral-950/20 lg:hidden backdrop-blur-xs"></div>
+            
+            <div class="absolute top-0 left-0 bottom-0 w-full max-w-[260px] bg-white p-5 overflow-y-auto shadow-xl lg:shadow-none lg:bg-transparent lg:p-0 lg:w-full lg:static lg:sticky lg:top-6 flex flex-col h-full lg:h-auto" id="filter-container">
+              
+              <div class="flex items-center justify-between pb-3 mb-4 border-b border-neutral-200/60 lg:hidden flex-shrink-0">
+                <div class="flex items-center gap-2">
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-neutral-900" client:load />
+                  <span class="font-bold text-neutral-900 text-sm">Filtros</span>
+                </div>
+                <button id="btn-close-filters" class="p-1 text-neutral-400 hover:text-neutral-700 rounded-md" aria-label="Cerrar filtros">
+                  <X className="w-4 h-4" client:load />
+                </button>
+              </div>
+
+              <div class="space-y-4">
+                <div class="bg-white lg:border lg:border-neutral-200/50 lg:rounded-xl lg:p-4 lg:shadow-xs">
+                  <h4 class="font-bold text-[10px] uppercase tracking-wider text-neutral-400 mb-2.5">Categorías</h4>
+                  <div class="space-y-1">
+                    {categories.map((category) => (
+                      <label class="flex items-center gap-2 py-1 px-1.5 rounded-lg text-xs font-medium text-neutral-500 cursor-pointer hover:text-neutral-900 hover:bg-neutral-50 transition-all select-none">
+                        <input 
+                          type="radio" 
+                          name="category-filter" 
+                          value={category} 
+                          checked={category === "Todos"}
+                          class="category-input text-neutral-900 focus:ring-neutral-900/10 w-3.5 h-3.5 border-neutral-300" 
+                        />
+                        <span class="truncate">{category.replace("Accesorios / ", "")}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="bg-white lg:border lg:border-neutral-200/50 lg:rounded-xl lg:p-4 lg:shadow-xs">
+                  <h4 class="font-bold text-[10px] uppercase tracking-wider text-neutral-400 mb-2.5">Precio</h4>
+                  <div class="space-y-1">
+                    {[
+                      { value: "all", label: "Cualquier precio" },
+                      { value: "under-100", label: "Hasta $100k" },
+                      { value: "100-500", label: "$100k - $500k" },
+                      { value: "over-500", label: "Más de $500k" }
+                    ].map((range, index) => (
+                      <label class="flex items-center gap-2 py-1 px-1.5 rounded-lg text-xs font-medium text-neutral-500 cursor-pointer hover:text-neutral-900 hover:bg-neutral-50 transition-all select-none">
+                        <input 
+                          type="radio" 
+                          name="price-range" 
+                          value={range.value} 
+                          checked={index === 0} 
+                          class="price-input text-neutral-900 focus:ring-neutral-900/10 w-3.5 h-3.5 border-neutral-300" 
+                        />
+                        <span class="truncate">{range.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <button id="btn-clean" class="w-full mt-4 bg-white border border-neutral-200 text-neutral-600 text-[11px] py-2 rounded-xl font-bold hover:bg-neutral-50 transition-all shadow-xs flex-shrink-0">
+                Reiniciar filtros
+              </button>
+            </div>
+          </aside>
+
+          {/* 2. CUADRÍCULA CENTRAL COMPACTA DE PRODUCTOS */}
+        <div id="grid-products" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4">
+          {/* El mapeo recorre tu array e inyecta un componente hijo por cada producto */}
+          {products.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+
+          {/* 3. ¡TU FILTRO DEL LADO DERECHO REGRESÓ! (ORDENAMIENTO Y MÁS VENDIDOS) */}
+          <aside 
+            id="sort-sidebar" 
+            class="fixed inset-y-0 right-0 z-50 invisible opacity-0 lg:visible lg:opacity-100 lg:static lg:z-auto w-full lg:w-48 flex-shrink-0 transition-all duration-300"
+          >
+            <div id="sort-overlay" class="absolute inset-0 bg-neutral-950/20 lg:hidden backdrop-blur-xs"></div>
+            
+            <div class="absolute top-0 right-0 bottom-0 w-full max-w-[260px] bg-white p-5 overflow-y-auto shadow-xl lg:shadow-none lg:bg-transparent lg:p-0 lg:w-full lg:static lg:sticky lg:top-6 flex flex-col h-full lg:h-auto" id="sort-container">
+              
+              <div class="flex items-center justify-between pb-3 mb-4 border-b border-neutral-200/60 lg:hidden flex-shrink-0">
+                <div class="flex items-center gap-2">
+                  <ArrowUpDown className="w-3.5 h-3.5 text-neutral-900" client:load />
+                  <span class="font-bold text-neutral-900 text-sm">Ordenar catálogo</span>
+                </div>
+                <button id="btn-close-sort" class="p-1 text-neutral-400 hover:text-neutral-700 rounded-md" aria-label="Cerrar orden">
+                  <X className="w-4 h-4" client:load />
+                </button>
+              </div>
+
+              <div class="bg-white lg:border lg:border-neutral-200/50 lg:rounded-xl lg:p-4 lg:shadow-xs space-y-4">
+                <div>
+                  <h4 class="font-bold text-[10px] uppercase tracking-wider text-neutral-400 mb-2.5">Ordenar por</h4>
+                  <div class="space-y-1">
+                    {[
+                      { value: "default", label: "Relevancia" },
+                      { value: "price-asc", label: "Precio: Menor a Mayor" },
+                      { value: "price-desc", label: "Precio: Mayor a Menor" },
+                      { value: "rating", label: "Mejor Calificados" }
+                    ].map((sortOption, index) => (
+                      <label class="flex items-center gap-2 py-1 px-1.5 rounded-lg text-xs font-medium text-neutral-500 cursor-pointer hover:text-neutral-900 hover:bg-neutral-50 transition-all select-none">
+                        <input 
+                          type="radio" 
+                          name="sort-option" 
+                          value={sortOption.value} 
+                          checked={index === 0} 
+                          class="sort-input text-neutral-900 focus:ring-neutral-900/10 w-3.5 h-3.5 border-neutral-300" 
+                        />
+                        <span class="truncate">{sortOption.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </aside>
+ 
+        </div>
+      </section>
+    </div>
+    <Footer />
+  </div>
+</Layout>
+
+{/* SCRIPT DE CONTROL OPTIMIZADO CON AMBOS FILTROS */}
+<script>
+  function initEcommerceFilters() {
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const categoryInputs = document.querySelectorAll('.category-input') as NodeListOf<HTMLInputElement>;
+    const priceInputs = document.querySelectorAll('.price-input') as NodeListOf<HTMLInputElement>;
+    const sortInputs = document.querySelectorAll('.sort-input') as NodeListOf<HTMLInputElement>;
+    const productCards = document.querySelectorAll('.product-card') as NodeListOf<HTMLElement>;
+    const gridProducts = document.getElementById('grid-products');
+    const btnClean = document.getElementById('btn-clean');
+    const noProductsMsg = document.getElementById('no-products-msg');
+    
+    const mobileQuickTags = document.querySelectorAll('.mobile-quick-tag') as NodeListOf<HTMLButtonElement>;
+
+    // Control Drawer Izquierdo (Filtros)
+    const btnOpenFilters = document.getElementById('btn-open-filters');
+    const btnCloseFilters = document.getElementById('btn-close-filters');
+    const filterSidebar = document.getElementById('filter-sidebar');
+    const filterOverlay = document.getElementById('filter-overlay');
+    const filterContainer = document.getElementById('filter-container');
+
+    // Control Drawer Derecho (Ordenamiento)
+    const btnOpenSort = document.getElementById('btn-open-sort');
+    const btnCloseSort = document.getElementById('btn-close-sort');
+    const sortSidebar = document.getElementById('sort-sidebar');
+    const sortOverlay = document.getElementById('sort-overlay');
+    const sortContainer = document.getElementById('sort-container');
+
+    function toggleDrawer(sidebar: HTMLElement | null, container: HTMLElement | null, isOpen: boolean) {
+      if (!sidebar || !container) return;
+      if (isOpen) {
+        sidebar.classList.remove('invisible', 'opacity-0');
+        sidebar.classList.add('visible', 'opacity-100');
+        container.classList.remove('-translate-x-full', 'translate-x-full');
+        container.classList.add('translate-x-0');
+        document.body.style.overflow = 'hidden'; 
+      } else {
+        sidebar.classList.remove('visible', 'opacity-100');
+        sidebar.classList.add('invisible', 'opacity-0');
+        document.body.style.overflow = '';
+      }
+    }
+
+    btnOpenFilters?.addEventListener('click', () => toggleDrawer(filterSidebar, filterContainer, true));
+    btnCloseFilters?.addEventListener('click', () => toggleDrawer(filterSidebar, filterContainer, false));
+    filterOverlay?.addEventListener('click', () => toggleDrawer(filterSidebar, filterContainer, false));
+
+    btnOpenSort?.addEventListener('click', () => {
+      if (sortContainer) sortContainer.classList.add('translate-x-0');
+      toggleDrawer(sortSidebar, sortContainer, true);
+    });
+    btnCloseSort?.addEventListener('click', () => toggleDrawer(sortSidebar, sortContainer, false));
+    sortOverlay?.addEventListener('click', () => toggleDrawer(sortSidebar, sortContainer, false));
+
+    function updateCatalog() {
+      const searchTerms = searchInput?.value.toLowerCase().trim() || "";
+      let activeCategory = "Todos";
+      categoryInputs.forEach(radio => { if (radio.checked) activeCategory = radio.value; });
+
+      let activePriceRange = "all";
+      priceInputs.forEach(radio => { if (radio.checked) activePriceRange = radio.value; });
+
+      mobileQuickTags.forEach(tag => {
+        const value = tag.getAttribute('data-value');
+        if (value === activeCategory) {
+          tag.classList.remove('bg-neutral-50', 'text-neutral-500', 'border-neutral-200/60');
+          tag.classList.add('bg-neutral-900', 'text-white', 'border-neutral-900');
+        } else {
+          tag.classList.remove('bg-neutral-900', 'text-white', 'border-neutral-900');
+          tag.classList.add('bg-neutral-50', 'text-neutral-500', 'border-neutral-200/60');
+        }
+      });
+
+      let visibleCards: HTMLElement[] = [];
+
+      productCards.forEach(card => {
+        const name = card.getAttribute('data-name') || "";
+        const category = card.getAttribute('data-category') || "";
+        const price = parseInt(card.getAttribute('data-price') || "0", 10);
+
+        const matchSearch = searchTerms === "" || name.includes(searchTerms);
+        const matchCategory = activeCategory === "Todos" || category === activeCategory;
+        
+        let matchPrice = false;
+        if (activePriceRange === "all") matchPrice = true;
+        else if (activePriceRange === "under-100" && price <= 100000) matchPrice = true;
+        else if (activePriceRange === "100-500" && price > 100000 && price <= 500000) matchPrice = true;
+        else if (activePriceRange === "over-500" && price > 500000) matchPrice = true;
+
+        if (matchSearch && matchCategory && matchPrice) {
+          card.classList.remove('hidden');
+          visibleCards.push(card);
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // LÓGICA DE ORDENAMIENTO (FILTRO DERECHO)
+      let activeSort = "default";
+      sortInputs.forEach(radio => { if (radio.checked) activeSort = radio.value; });
+
+      if (activeSort !== "default" && gridProducts) {
+        visibleCards.sort((a, b) => {
+          const priceA = parseInt(a.getAttribute('data-price') || "0", 10);
+          const priceB = parseInt(b.getAttribute('data-price') || "0", 10);
+          const ratingA = parseFloat(a.getAttribute('data-rating') || "0");
+          const ratingB = parseFloat(b.getAttribute('data-rating') || "0");
+
+          if (activeSort === "price-asc") return priceA - priceB;
+          if (activeSort === "price-desc") return priceB - priceA;
+          if (activeSort === "rating") return ratingB - ratingA;
+          return 0;
+        });
+
+        visibleCards.forEach(card => gridProducts.appendChild(card));
+      }
+
+      if (visibleCards.length === 0) noProductsMsg?.classList.remove('hidden');
+      else noProductsMsg?.classList.add('hidden');
+    }
+
+    searchInput?.addEventListener('input', updateCatalog);
+    
+    categoryInputs.forEach(input => input.addEventListener('change', () => {
+      updateCatalog();
+      if (window.innerWidth < 1024) toggleDrawer(filterSidebar, filterContainer, false);
+    }));
+    
+    priceInputs.forEach(input => input.addEventListener('change', () => {
+      updateCatalog();
+      if (window.innerWidth < 1024) toggleDrawer(filterSidebar, filterContainer, false);
+    }));
+
+    sortInputs.forEach(input => input.addEventListener('change', () => {
+      updateCatalog();
+      if (window.innerWidth < 1024) toggleDrawer(sortSidebar, sortContainer, false);
+    }));
+
+    mobileQuickTags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        const targetValue = tag.getAttribute('data-value') || "Todos";
+        categoryInputs.forEach(input => { input.checked = input.value === targetValue; });
+        updateCatalog();
+      });
+    });
+
+    btnClean?.addEventListener('click', () => {
+      if (searchInput) searchInput.value = "";
+      categoryInputs.forEach(input => input.checked = input.value === "Todos");
+      priceInputs.forEach(input => input.checked = input.value === "all");
+      if (sortInputs[0]) sortInputs[0].checked = true;
+      updateCatalog();
+      if (window.innerWidth < 1024) toggleDrawer(filterSidebar, filterContainer, false);
+    });
+  }
+
+  initEcommerceFilters();
+  document.addEventListener('astro:page-load', initEcommerceFilters);
+</script>
+
+<style>
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
